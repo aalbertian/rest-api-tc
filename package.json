@@ -1,0 +1,33 @@
+{
+  "name": "backend-tc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js",
+    "migrate-create": "./node_modules/.bin/migrate create",
+    "migrate-list": "./node_modules/.bin/migrate list",
+    "migrate-up": "./node_modules/.bin/migrate up",
+    "migrate-down": "./node_modules/.bin/migrate down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "migrate-mongoose": "^4.0.0",
+    "mongoose": "^6.0.12",
+    "passport": "^0.5.0",
+    "passport-jwt": "^4.0.0",
+    "nodemon": "^2.0.14",
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/node": "^7.15.8",
+    "@babel/preset-env": "^7.15.8"
+  },
+  "devDependencies": {}
+}
