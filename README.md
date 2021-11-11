@@ -36,11 +36,11 @@ RESTful методы - GET, PUT, POST, DELETE :
 - column `fullName | email`
 - sort `asc | desc`
 
-**Чтение типов обращений**
+**Чтение типов обращения**
 
 `GET => {server}/types`
 
-**Чтение статусов обращений**
+**Чтение статусов обращения**
 
 `GET => {server}/status`
 
