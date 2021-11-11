@@ -14,11 +14,11 @@ RESTful методы - GET, PUT, POST, DELETE :
 
 ##### Параметры
 
-- offset смещение от начала коллекции обращений
-- limit лимит обращений
-- search строка поиска
-- column title | description | type | status
-- sort asc | desc
+- offset `смещение от начала коллекции обращений`
+- limit `лимит обращений`
+- search `строка поиска`
+- column `title | description | type | status`
+- sort `asc | desc`
 
 **Чтение пользователей**
 
@@ -30,11 +30,11 @@ RESTful методы - GET, PUT, POST, DELETE :
 
 ##### Параметры
 
-- offset смещение от начала коллекции пользователей
-- limit лимит пользователей
-- search строка поиска
-- column fullName | email
-- sort asc | desc
+- offset `смещение от начала коллекции пользователей`
+- limit `лимит пользователей`
+- search `строка поиска`
+- column `fullName | email`
+- sort `asc | desc`
 
 **Чтение типов обращений**
 
