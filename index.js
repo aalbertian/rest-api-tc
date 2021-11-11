@@ -4,6 +4,9 @@ import cors from "cors";
 import auth from "./routers/auth";
 import user from "./routers/user";
 import claim from "./routers/claim";
+import types from "./routers/type";
+import status from "./routers/status";
+import roles from "./routers/role";
 import passport from "passport";
 import authJwtMiddleware from "./middleware/authJwtMiddleware";
 import dotenv from "dotenv";
@@ -19,6 +22,9 @@ app.use(cors());
 app.use('/auth', auth);
 app.use(user);
 app.use(claim)
+app.use(types)
+app.use(status)
+app.use(roles)
 
 async function start() {
     try {

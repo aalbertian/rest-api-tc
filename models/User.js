@@ -9,4 +9,6 @@ const Users = new Schema({
     role: {type: ObjectId, ref: 'Roles'},
 }, { timestamps: true })
 
+Users.index({'$**': 'text'})
+
 module.exports = model('Users', Users)

@@ -10,7 +10,15 @@ RESTful методы - GET, PUT, POST, DELETE :
 
 `GET => {server}/claim/{id}`
 
-`GET => {server}/claim?offset=0&limit&=10`
+`GET => {server}/claim?offset=0&limit=10&search=text&column=title&sort=desc`
+
+##### Параметры
+
+- offset смещение от начала коллекции обращений
+- limit лимит обращений
+- search строка поиска
+- column title | description | type | status
+- sort asc | desc
 
 **Чтение пользователей**
 
@@ -18,7 +26,27 @@ RESTful методы - GET, PUT, POST, DELETE :
 
 `GET => {server}/user/{id}`
 
-`GET => {server}/user?offset=0&limit&=10`
+`GET => {server}/user?offset=0&limit=10search=text&column=fullName&sort=desc`
+
+##### Параметры
+
+- offset смещение от начала коллекции пользователей
+- limit лимит пользователей
+- search строка поиска
+- column fullName | email
+- sort asc | desc
+
+**Чтение типов обращений**
+
+`GET => {server}/types`
+
+**Чтение статусов обращений**
+
+`GET => {server}/status`
+
+**Чтение ролей пользователя**
+
+`GET => {server}/roles`
 
 ### POST (Create)
 
@@ -28,7 +56,7 @@ RESTful методы - GET, PUT, POST, DELETE :
 
 Пример отправляемых данных:
 
-`{"title":"some title","description":"some description","type":"some type (Software)"}`
+`{"title":"some title", "description":"some description", "type": type.slug, "status": status.slug}`
 
 **Создание пользователя**
 
@@ -36,7 +64,7 @@ RESTful методы - GET, PUT, POST, DELETE :
 
 Пример отправляемых данных:
 
-`{"fullName": "some name","email": "some email","password": "some password", role: "some role (admin, work)"}`
+`{"fullName": "some name","email": "some email","password": "some password", role: role.slug}`
 
 **Регистрация пользователя**
 
@@ -62,7 +90,7 @@ RESTful методы - GET, PUT, POST, DELETE :
 
 Пример отправляемых данных:
 
-`{"title":"some title","description":"some description","type":"some type (Hardware)","status": "some status (NEW)"}`
+`{"title":"some title","description":"some description","type": type.slug,"status": status.slug}`
 
 Примечание:
 
@@ -74,7 +102,7 @@ RESTful методы - GET, PUT, POST, DELETE :
 
 Пример отправляемых данных:
 
-`{"fullName": "some name","email": "some email","password": "some password", role: "some role (admin, work)"}`
+`{"fullName": "some name","email": "some email","password": "some password", role: role.slug}`
 
 ### DELETE (Delete)
 

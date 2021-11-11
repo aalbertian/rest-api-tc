@@ -21,10 +21,15 @@ export class AuthController {
             }
             const hashPassword = bcrypt.hashSync(password, 10);
             const userRole = await Roles.findOne({slug: WORK})
-            const user = new Users({fullName, email, password: hashPassword, role: userRole._id});
+            const user = new Users({fullName, email, password: hashPassword, role: userRole});
             await user.save();
             const token = generateAccessToken(user.id, user.email);
-            return res.status(200).json({token, role: WORK, user_id: user.id, fullName: user.fullName, email: user.email});
+            return res.status(200).json({
+                token,
+                role: {name: user.role.name, slug: user.role.slug},
+                user_id: user.id,
+                fullName: user.fullName,
+                email: user.email});
         } catch (e) {
             console.log(e)
             res.status(400).json({message: 'Registration error'});
@@ -33,7 +38,7 @@ export class AuthController {
     async login(req, res) {
         try {
             const {email, password} = req.body;
-            const user = await Users.findOne({email}).populate('role');
+            const user = await Users.findOne({email}).populate({path: 'role', select: 'name slug -_id'});
             if (!user) {
                 return res.json({message: 'Login error', code: 2});
             }
@@ -41,9 +46,8 @@ export class AuthController {
             if (!validPassword) {
                 return res.json({message: 'Password error', code: 2 });
             }
-            const role = user.role.slug
             const token = generateAccessToken(user.id, user.email);
-            return res.json({token, role, user_id: user.id, fullName: user.fullName, email: user.email})
+            return res.json({token, role: user.role, user_id: user.id, fullName: user.fullName, email: user.email})
         } catch (e) {
             console.log(e)
             res.status(400).json({message: 'Login error'})
