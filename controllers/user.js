@@ -9,12 +9,12 @@ export class UserController {
             const {fullName, email, password, role = ADMIN} = req.body;
             const candidate = await Users.findOne({email});
             if (candidate) {
-                return res.json({message: "A user with this username already exists", code: 1});
+                return res.status(409).json({message: "A user with this username already exists"});
             }
             const hashPassword = bcrypt.hashSync(password, 10);
             const userRole = await Roles.findOne({slug: role})
             if (!userRole) {
-                return res.json({message: "A role doesn't exists", code: 1});
+                return res.status(403).json({message: "A role doesn't exists"});
             }
             const user = new Users({fullName, email, password: hashPassword, role: userRole});
             await user.save();

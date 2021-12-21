@@ -17,7 +17,7 @@ export class AuthController {
             const {fullName, email, password} = req.body;
             const candidate = await Users.findOne({email});
             if (candidate) {
-                return res.json({message: "A user with this username already exists", code: 1});
+                return res.status(409).json({message: "A user with this username already exists"});
             }
             const hashPassword = bcrypt.hashSync(password, 10);
             const userRole = await Roles.findOne({slug: WORK})
@@ -40,11 +40,11 @@ export class AuthController {
             const {email, password} = req.body;
             const user = await Users.findOne({email}).populate({path: 'role', select: 'name slug -_id'});
             if (!user) {
-                return res.json({message: 'Login error', code: 2});
+                return res.status(401).json({message: 'Login error', code: 'login'});
             }
             const validPassword = bcrypt.compareSync(password, user.password);
             if (!validPassword) {
-                return res.json({message: 'Password error', code: 2 });
+                return res.status(401).json({message: 'Password error', code: 'password'});
             }
             const token = generateAccessToken(user.id, user.email);
             return res.json({token, role: user.role, user_id: user.id, fullName: user.fullName, email: user.email})
