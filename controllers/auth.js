@@ -40,7 +40,7 @@ export class AuthController {
             const {email, password} = req.body;
             const user = await Users.findOne({email}).populate({path: 'role', select: 'name slug -_id'});
             if (!user) {
-                return res.status(401).json({message: 'Login error', code: 'login'});
+                return res.status(401).json({message: 'Login error', code: 'email'});
             }
             const validPassword = bcrypt.compareSync(password, user.password);
             if (!validPassword) {
